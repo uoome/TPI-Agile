@@ -122,23 +122,21 @@ public class Partida {
 	}
 	
 	// Verificar si va aca, quizas deba ir en el servlet
-	/*public void adivinarLetra(String letra) {
+	public void guess(String letra) {
 		if(letra.isEmpty()) {
 			System.out.println("Ingrese alguna letra");
-			this.vidas --;
-			System.out.println("Vidas restantes: " + this.getVidas());
-			
-		} else if(this.palabraAdivinar.contains(letra)) {
+			this.setLifes(this.getLifes()-1);
+			System.out.println("Vidas restantes: " + this.getLifes());
+		} else if(this.getWordToGuess().contains(letra)) {
 			System.out.println("El caracter '" + letra + "' es correcto");
-			this.cantLetrasAdivinadas += this.contarCaracteresRepetidos(letra); 
-			
+			this.setGuessedLetters(this.getGuessedLetters() + this.contarCaracteresRepetidos(letra));			
 		} else {
 			System.out.println("El caracter '" + letra + "' es erroneo");
-			this.cantLetrasErradas ++;
-			this.vidas --;
-			System.out.println("Vidas restantes: " + this.getVidas());
+			this.setUnguessedLetters(this.getUnguessedLetters() + 1);
+			this.setLifes(this.getLifes()-1);
+			System.out.println("Vidas restantes: " + this.getLifes());
 		}	
-	}*/
+	}
 
 	
 	

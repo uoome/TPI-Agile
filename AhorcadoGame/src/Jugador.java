@@ -38,6 +38,21 @@ public class Jugador {
     }
 	
 	// Methods
+	public void showStorys() {
+		System.out.println("Historial de partidas");
+		
+		if(this.getNamePlayer().isEmpty())
+			System.out.println("Nombre jugador: -");
+		else System.out.println("Nombre jugador: " + this.getNamePlayer());
+		
+		System.out.println("Cantidad de partidas jugadas: " + this.getPlayerGames().size());
+		
+		for(Partida p : this.getPlayerGames()) {
+			System.out.println("*************");
+			System.out.println("Score: " + p.getScore());
+			System.out.println("Duracion: " + p.getGameDuration());
+		}
+	}
     
     
 
