@@ -1,3 +1,5 @@
+
+<%@ page import="Entities.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
@@ -16,23 +18,33 @@
 </head>
 
 <body>
+	<% Jugador actualPlayer = (Jugador) session.getAttribute("player"); %>
+	<% Partida actualGame = (Partida) actualPlayer.getPlayerGames().get(actualPlayer.getPlayerGames().size() - 1); %>
     <!-- Content -->
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4 text-center"> AhorcadoGame</h1>
+            <h1 class="display-4 text-center">AhorcadoGame</h1>
             <hr class="my-4">
-            <p class="lead">Usted esta jugando como <b>****</b></p>
+            <p class="lead">Usted esta jugando como <b><%= actualPlayer.getNamePlayer() %></b></p>
             <div class="row justify-content-center">
-                <form action="" method="POST">
+                <form action="JuegoServlet" method="POST">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col">
                                 <label class="mr-3">Vidas</label>
-                                <label>#</label>
+                                <% if(actualGame == null){ %>
+                               	<label>*</label>
+                                <% } else {  %>
+                                <label><%= actualGame.getLifes() %></label>
+                                <% } %>
                             </div>
                             <div class="col">
                                 <label class="mr-3">Palabra</label>
-                                <label><i>*****</i></label>
+                                <% if(actualGame == null){ %>
+                               	<label>*</label>
+                                <% } else {  %>
+                                <label><i><%= actualGame.getWordToGuess() %></i></label>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -42,7 +54,7 @@
                                 <label for="letterInput">Ingrese letra</label>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control form-control-sm" id="letterInput">
+                                <input type="text" class="form-control form-control-sm" id="letterInput" name="letterInput">
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-success" name="btnGuess">
