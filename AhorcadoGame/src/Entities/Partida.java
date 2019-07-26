@@ -4,7 +4,7 @@ public class Partida {
 	
 	// Variables
 	private int score, guessedLetters, unguessedLetters, lifes;
-	private String wordToGuess;
+	private String wordToGuess, wordToDisplay;
 	private String[] alphabet = {"perro","arbol","manzana","kanvan","adrenalina","objeto"};
 	private long startTime, endTime, gameDuration;
 	
@@ -49,6 +49,14 @@ public class Partida {
 		this.wordToGuess = wordToGuess;
 	}
 
+	public String getWordToDisplay() {
+		return wordToDisplay;
+	}
+
+	public void setWordToDisplay(String wordToDisplay) {
+		this.wordToDisplay = wordToDisplay;
+	}
+
 	public String[] getAlphabet() {
 		return alphabet;
 	}
@@ -89,12 +97,33 @@ public class Partida {
 		this.setUnguessedLetters(0);
 		this.setScore(0);
 		this.setStartTime(System.currentTimeMillis());
-	}
-	
+		this.setWordToDisplay(this.formWord());
+	}	
+
 	// Methods
 	public String generateWord() {
 		int index = (int) (Math.random() * this.getAlphabet().length);
 		return alphabet[index];
+	}
+	
+	public String formWord() {
+		StringBuilder word = new StringBuilder(this.getWordToGuess());
+        for(int i=0; i < this.getWordToGuess().length(); i++) {
+        	word.setCharAt(i, '*');
+        }
+        return word.toString();
+	}
+	
+	public void formWord(String caracter, int posicion) {
+		char c = caracter.charAt(0);
+		StringBuilder temp = new StringBuilder(this.getWordToDisplay()); // *a**a*
+		for(int i=0; i < this.getWordToDisplay().length(); i++) {
+	       	if(this.getWordToDisplay().charAt(i) == '*') {
+	       		if(posicion == i)
+	       			temp.setCharAt(i, c);
+	       	}
+	    }				
+        this.setWordToDisplay(temp.toString());
 	}
 	
 	public void calculateScore() {
@@ -110,14 +139,18 @@ public class Partida {
 	public int contarCaracteresRepetidos(String caracter) {
         int posicion, contador = 0;
         // Busco la primera vez que aparece
-        posicion = this.getWordToGuess().indexOf(caracter);
+        posicion = this.getWordToGuess().indexOf(caracter);  
         System.out.println("La letra se encuentra en la posicion: " + posicion);
+        // Formo palabra a mostrar
+     	this.formWord(caracter, posicion);
         while (posicion != -1) { //mientras se encuentre el caracter
             contador++; //se cuenta la repeticion
             //busco a partir de la posición siguiente a la encontrada
             posicion = this.getWordToGuess().indexOf(caracter, posicion + 1);
-            if(posicion != -1)
+            if(posicion != -1)            
             	System.out.println("La letra se encuentra en la posicion: " + posicion);
+	         	// Formo palabra a mostrar
+	         	this.formWord(caracter, posicion);
         }
         return contador;
 	}

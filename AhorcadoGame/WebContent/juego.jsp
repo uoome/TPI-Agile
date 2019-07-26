@@ -43,7 +43,7 @@
                                 <% if(actualGame == null){ %>
                                	<label>*</label>
                                 <% } else {  %>
-                                <label><i><%= actualGame.getWordToGuess() %></i></label>
+                                <label><i><%= actualGame.getWordToDisplay() %></i></label>
                                 <% } %>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <label for="letterInput">Ingrese letra</label>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control form-control-sm" id="letterInput" name="letterInput">
+                                <input type="text" class="form-control form-control-sm" id="letterInput" name="letterInput" autofocus>
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-sm btn-success" name="btnGuess">

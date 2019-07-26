@@ -49,21 +49,33 @@ public class JuegoServlet extends HttpServlet {
 				// Adivino letra
 				String letter = request.getParameter("letterInput");
 				actualGame.guess(letter);
-				
-				if(actualGame.getGuessedLetters() == actualGame.getWordToGuess().length()) {
-					// Cambiar metodos para que devuelvan strings y hacer mensajes
+				// Preguntar si adivino todas las letras
+				if(actualGame.getGuessedLetters() == actualGame.getWordToGuess().length()) {					
+					// Calcular score y tiempo
 					actualGame.calculateScore();
 					actualGame.calculateGameTime();
-					
-					String msj = "Felicitaciones, ha adivinado la palabra!";
+					// Preparar mensaje
+					String msj = "Felicitaciones, ha adivinado la palabra " + actualGame.getWordToGuess() + "!";
+					// Redireccionar
 					request.setAttribute("msj", msj);
-					request.getRequestDispatcher("juego.jsp");
+					request.getRequestDispatcher("record.jsp").forward(request, response);
+
+				} else if(actualGame.getLifes() == 0) {
+					// Preparar mensaje
+					String msj = "Ha perdido! La palabra era: " + actualGame.getWordToGuess();
+					// Redireccionar
+					request.setAttribute("msj", msj);
+					request.getRequestDispatcher("record.jsp").forward(request, response);
 				} else {
-					request.getRequestDispatcher("juego.jsp");
+					// Seguir jugando 
+					request.getRequestDispatcher("juego.jsp").forward(request, response);
 				}				
-				
 			}
 			
+		}
+		
+		if(request.getParameter("btnNewGame") != null) {
+			request.getRequestDispatcher("index.html").forward(request, response);
 		}
 	}
 

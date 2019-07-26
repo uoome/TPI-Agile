@@ -180,5 +180,31 @@ class AhorcadoGameTest {
 		// Assert 
 		assertEquals(tiempoFin - tiempoInicio, partidaActual.getGameDuration());	
 	}
+	
+	@Test
+	void palabra_perro_adivinar_letra_e_muestra_palabra_con_letra_e(){
+		// Arrange
+		partidaActual.setWordToDisplay("*****");
+		
+		// Act
+		partidaActual.formWord("e", 1);
+		
+		// Assert
+		assertEquals("*e***", partidaActual.getWordToDisplay());
+	}
+	
+	@Test
+	void palabra_perro_adivinar_letras_e_y_r_muestra_palabra_con_letras(){
+		// Arrange
+		partidaActual.setWordToDisplay("*****");
+		
+		// Act
+		partidaActual.formWord("e", 1);
+		partidaActual.formWord("r",2);
+		partidaActual.formWord("r",3);
+		
+		// Assert
+		assertEquals("*err*", partidaActual.getWordToDisplay());
+	}
 
 }
