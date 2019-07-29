@@ -34,9 +34,6 @@
                 <div class="form-group align-center">
                     <div class="form-row">
                         <div class="col">
-                            <button type="submit" class="btn btn-info" name="btnHistory" disabled>Historial</button>
-                        </div>
-                        <div class="col">
                             <button type="submit" class="btn btn-warning" name="btnNewGame">New</button>
                         </div>
                     </div>

@@ -43,9 +43,9 @@
                                 <% if(actualGame == null){ %>
                                	<label>*</label>
                                 <% } else {  %>
-                                <label><i><%= actualGame.getWordToDisplay() %></i></label>
+                                <label><i><%= actualGame.getWordToDisplay() %></i> (<%= actualGame.getWordToGuess().length() %>)</label>
                                 <% } %>
-                            </div>
+                            </div>                           	
                         </div>
                     </div>
                     <div class="form-group">
