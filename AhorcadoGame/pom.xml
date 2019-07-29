@@ -2,11 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>AhorcadoGame</groupId>
   <artifactId>AhorcadoGame</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>Tests</testSourceDirectory>
+    
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
@@ -15,6 +16,7 @@
           <warSourceDirectory>WebContent</warSourceDirectory>
         </configuration>
       </plugin>
+      
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
@@ -24,5 +26,8 @@
         </configuration>
       </plugin>
     </plugins>
+  
   </build>
+  
+  <version>1</version>
 </project>
