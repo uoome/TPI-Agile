@@ -18,5 +18,5 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: 'AhorcadoGameTest.java'
+    testResultsFiles: 'AhorcadoGame/Java Resources/Tests/AhorcadoGameTest.java'
     goals: 'package'
