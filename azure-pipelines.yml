@@ -17,6 +17,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
+    publishJUnitResults: true 
+    testResultsFiles: 'AhorcadoGame/Test/com/project/tests/AhorcadoGameTest.java' # Required when publishJUnitResults == True
+    testRunTitle: MyTests
     goals: 'package'
