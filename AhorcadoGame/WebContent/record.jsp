@@ -26,8 +26,7 @@
         <div class="jumbotron">
             <h3><%= request.getAttribute("msj") %></h3>
             <% if(actualGame.getGameDuration() != 0){ %>
-            	<p>Duracion de partida: <%= actualGame.getGameDuration() %></p>
-            	<p>Puntuacion: <%= actualGame.getScore() %></p>
+            	<p id="prgfPunctuation">Puntuacion: <%= actualGame.getScore() %></p>
             <% } %>            
             <p class="lead">Gracias <% if(!actualPlayer.getNamePlayer().equals("-")){ %><%= actualPlayer.getNamePlayer() %><% } %> por jugar!</p>
             <form action="JuegoServlet" class="form-inline" method="POST">
