@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import Entities.*;
 
-class AhorcadoGameTest {
+public class AhorcadoGameTest {
 	
 	private Partida partidaActual;
 	private String palabra;
