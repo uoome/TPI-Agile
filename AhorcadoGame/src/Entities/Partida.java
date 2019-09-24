@@ -1,13 +1,13 @@
 package Entities;
 
 public class Partida {
-	
+
 	// Variables
 	private int score, guessedLetters, unguessedLetters, lifes;
 	private String wordToGuess, wordToDisplay;
-	private String[] alphabet = {"perro","arbol","manzana","kanvan","adrenalina","objeto"};
+	private String[] alphabet = { "perro", "arbol", "manzana", "kanvan", "adrenalina", "objeto" };
 	private long startTime, endTime, gameDuration;
-	
+
 	// Getters and Setters
 	public int getScore() {
 		return score;
@@ -98,85 +98,78 @@ public class Partida {
 		this.setScore(0);
 		this.setStartTime(System.currentTimeMillis());
 		this.setWordToDisplay(this.formWord());
-	}	
+	}
 
 	// Methods
 	public String generateWord() {
 		int index = (int) (Math.random() * this.getAlphabet().length);
 		return alphabet[index];
 	}
-	
+
 	public String formWord() {
 		StringBuilder word = new StringBuilder(this.getWordToGuess());
-        for(int i=0; i < this.getWordToGuess().length(); i++) {
-        	word.setCharAt(i, '*');
-        }
-        return word.toString();
+		for (int i = 0; i < this.getWordToGuess().length(); i++) {
+			word.setCharAt(i, '*');
+		}
+		return word.toString();
 	}
-	
+
 	public void formWord(String caracter, int posicion) {
 		char c = caracter.charAt(0);
 		StringBuilder temp = new StringBuilder(this.getWordToDisplay()); // *a**a*
-		for(int i=0; i < this.getWordToDisplay().length(); i++) {
-	       	if(this.getWordToDisplay().charAt(i) == '*') {
-	       		if(posicion == i)
-	       			temp.setCharAt(i, c);
-	       	}
-	    }				
-        this.setWordToDisplay(temp.toString());
+		for (int i = 0; i < this.getWordToDisplay().length(); i++) {
+			if (this.getWordToDisplay().charAt(i) == '*') {
+				if (posicion == i)
+					temp.setCharAt(i, c);
+			}
+		}
+		this.setWordToDisplay(temp.toString());
 	}
-	
+
 	public void calculateScore() {
-		this.setScore(this.getGuessedLetters() * 2 - this.getUnguessedLetters()); 
-		System.out.println("Su score es: "  + this.getScore());	
+		this.setScore(this.getGuessedLetters() * 2 - this.getUnguessedLetters());
+		System.out.println("Su score es: " + this.getScore());
 	}
 
 	public void calculateGameTime() {
-		this.setGameDuration(this.getEndTime() - this.getStartTime());    
+		this.setGameDuration(this.getEndTime() - this.getStartTime());
 		System.out.println("Duracion (en milisegundos): " + this.getGameDuration());
 	}
-	
+
 	public int contarCaracteresRepetidos(String caracter) {
-        int posicion, contador = 0;
-        // Busco la primera vez que aparece
-        posicion = this.getWordToGuess().indexOf(caracter);  
-        System.out.println("La letra se encuentra en la posicion: " + posicion);
-        // Formo palabra a mostrar
-     	this.formWord(caracter, posicion);
-        while (posicion != -1) { //mientras se encuentre el caracter
-            contador++; //se cuenta la repeticion
-            //busco a partir de la posición siguiente a la encontrada
-            posicion = this.getWordToGuess().indexOf(caracter, posicion + 1);
-            if(posicion != -1)            
-            	System.out.println("La letra se encuentra en la posicion: " + posicion);
-	         	// Formo palabra a mostrar
-	         	this.formWord(caracter, posicion);
-        }
-        return contador;
+		int posicion, contador = 0;
+		// Busco la primera vez que aparece
+		posicion = this.getWordToGuess().indexOf(caracter);
+		System.out.println("La letra se encuentra en la posicion: " + posicion);
+		// Formo palabra a mostrar
+		this.formWord(caracter, posicion);
+		while (posicion != -1) { // mientras se encuentre el caracter
+			contador++; // se cuenta la repeticion
+			// busco a partir de la posición siguiente a la encontrada
+			posicion = this.getWordToGuess().indexOf(caracter, posicion + 1);
+			if (posicion != -1)
+				System.out.println("La letra se encuentra en la posicion: " + posicion);
+			// Formo palabra a mostrar
+			this.formWord(caracter, posicion);
+		}
+		return contador;
 	}
-	
+
 	// Verificar si va aca, quizas deba ir en el servlet
 	public void guess(String letra) {
-		if(letra.isEmpty()) {
+		if (letra.isEmpty()) {
 			System.out.println("Ingrese alguna letra");
-			this.setLifes(this.getLifes()-1);
+			this.setLifes(this.getLifes() - 1);
 			System.out.println("Vidas restantes: " + this.getLifes());
-		} else if(this.getWordToGuess().contains(letra)) {
+		} else if (this.getWordToGuess().contains(letra)) {
 			System.out.println("El caracter '" + letra + "' es correcto");
-			this.setGuessedLetters(this.getGuessedLetters() + this.contarCaracteresRepetidos(letra));			
+			this.setGuessedLetters(this.getGuessedLetters() + this.contarCaracteresRepetidos(letra));
 		} else {
 			System.out.println("El caracter '" + letra + "' es erroneo");
 			this.setUnguessedLetters(this.getUnguessedLetters() + 1);
-			this.setLifes(this.getLifes()-1);
+			this.setLifes(this.getLifes() - 1);
 			System.out.println("Vidas restantes: " + this.getLifes());
-		}	
+		}
 	}
-
-	
-	
-	
-	
-	
-	
 
 }
