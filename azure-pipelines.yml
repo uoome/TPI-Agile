@@ -12,12 +12,12 @@ pool:
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'AhorcadoGame/pom.xml'
+    mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true 
-    testResultsFiles: 'AhorcadoGame/Test/com/project/tests/AhorcadoGameTest.java' # Required when publishJUnitResults == True
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     testRunTitle: MyTests
     goals: 'package'
